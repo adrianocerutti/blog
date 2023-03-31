@@ -1,11 +1,48 @@
 <?php
 
+    /**
+     * Gera uma url amigável.
+     */
+    function slug(string $string): string
+    {
+        $mapa['a'] = 'àáâãäåçèéêëìíîïñòóôõöùüúÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖOÙÜÚ@#$%¨&*()-_=+§ªº<>;:?°"\\\'<>';
+        $mapa['b'] = 'aaaaaaceeeeiiiinooooouuuyAAAAAACEEEEIIIINOOOOOOUUU                             ';
+
+        $slug = strtr(utf8_decode($string), utf8_decode($mapa['a']), $mapa['b']);
+        $slug = strip_tags(trim($slug));
+        $slug = str_replace(' ', '-', $slug);
+        $slug = str_replace(['-----', '----', '---', '--', '-'], '-', $slug);
+
+        return strtolower($slug);
+    }
+
+    /**
+     * Retorna a data atual formatada.
+     */
+    function dataAtual(): string
+    {
+        $diaMes = date('d');
+        $diaSemana = date('w');
+        $mes = date('n') - 1;
+        $ano = date('Y');
+
+        $nomesDiasDaSemana = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira',
+        'quinta-feira', 'sexta-feira', 'sábado'];
+
+        $nomesDosMeses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro',
+        'outubro', 'novembro', 'dezembro'];
+
+        $dataFormatada = $nomesDiasDaSemana[$diaSemana].' '.$diaMes.' de '.$nomesDosMeses[$mes].' de '.$ano;
+
+        return $dataFormatada;
+    }
+
     function url(string $url): string
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
         $ambiente = ($servidor == 'localhost') ? URL_DESENVOLVIMENTO : URL_PRODUCAO;
 
-        if(str_starts_with($url, '/')) {
+        if (str_starts_with($url, '/')) {
             return $ambiente.$url;
         }
 
@@ -16,7 +53,7 @@
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
 
-        if($servidor == 'localhost') {
+        if ($servidor == 'localhost') {
             return true;
         }
 
@@ -24,41 +61,39 @@
     }
 
     /**
-     * Valida uma url
+     * Valida uma url.
+     *
      * @param string url
-     * @return bool
      */
-    function validarUrl(string $url) : bool
+    function validarUrl(string $url): bool
     {
-        if(mb_strlen($url) < 10) {
+        if (mb_strlen($url) < 10) {
             return false;
         }
-        if(!str_contains($url, '.')) {
+        if (!str_contains($url, '.')) {
             return false;
         }
-        if(str_contains($url, 'http://') or str_contains($url, 'https://')) {
+        if (str_contains($url, 'http://') or str_contains($url, 'https://')) {
             return true;
         }
 
         return false;
     }
 
-    function validarUrlComFiltro(string $url) : bool
+    function validarUrlComFiltro(string $url): bool
     {
         return filter_var($url, FILTER_VALIDATE_URL);
     }
 
-    function validarEmail(string $email) : bool
+    function validarEmail(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     /**
-     * Conta o tempo decorrido de uma data
-     * @param string $data
-     * @return string
+     * Conta o tempo decorrido de uma data.
      */
-    function contarTempo(string $data) : string
+    function contarTempo(string $data): string
     {
         $agora = strtotime(date('Y-m-d h:i:s'));
         $tempo = strtotime($data);
@@ -72,81 +107,78 @@
         $meses = round($diferenca / 2419200);
         $anos = round($diferenca / 29030400);
 
-        if($segundos <= 60) {
+        if ($segundos <= 60) {
             return 'agora';
-        }elseif($minutos <= 60) {
+        } elseif ($minutos <= 60) {
             return $minutos == 1 ? 'há 1 minuto' : 'há '.$minutos.' minutos';
-        }elseif($horas <= 24) {
+        } elseif ($horas <= 24) {
             return $horas == 1 ? 'há 1 hora' : 'há '.$horas.' horas';
-        }elseif($dias <= 7) {
+        } elseif ($dias <= 7) {
             return $dias == 1 ? 'há 1 dia' : 'há '.$dias.' dias';
-        }elseif($semanas <= 4) {
+        } elseif ($semanas <= 4) {
             return $semanas == 1 ? 'há 1 semana' : 'há '.$semanas.' semanas';
-        }elseif($meses <= 12) {
+        } elseif ($meses <= 12) {
             return $meses == 1 ? 'há 1 mês' : 'há '.$meses.' meses';
-        }else {
+        } else {
             return $anos == 1 ? 'há 1 ano' : 'há '.$anos.' anos';
         }
     }
 
     /**
-     * Formata um valor com ponto e vírgula
+     * Formata um valor com ponto e vírgula.
+     *
      * @param float $valor
-     * @return string
      */
-    function formatarValor(float $valor = null):string
+    function formatarValor(float $valor = null): string
     {
-        return number_format(($valor ? $valor : 0), 2, ",", ".");
+        return number_format($valor ? $valor : 0, 2, ',', '.');
     }
 
     /**
-     * Formata um número com pontos
+     * Formata um número com pontos.
+     *
      * @param int $numero
+     *
      * @return string
      */
     function formatarNumero(string $numero = null)
     {
-        return number_format($numero ? $numero : 0, 0, ".", ".");
+        return number_format($numero ? $numero : 0, 0, '.', '.');
     }
 
     /**
-     * Saudação de acordo com o horário
+     * Saudação de acordo com o horário.
+     *
      * @return string saudacao
      */
     function saudacao(): string
     {
-        $hora = date('H:i:s');
+        $hora = date('H');
 
-        if($hora >= 0 && $hora <= 5){
-            $saudacao = 'boa madrugada';
+        if ($hora >= 0 && $hora < 5) {
+            $saudacao = 'Boa madrugada';
+        } elseif ($hora >= 5 && $hora < 12) {
+            $saudacao = 'Bom dia';
+        } elseif ($hora >= 12 && $hora < 18) {
+            $saudacao = 'Boa tarde';
+        } else {
+            $saudacao = 'Boa noite';
         }
-        elseif($hora >= 6 && $hora <= 12){
-            $saudacao = 'bom dia';
-        }
-        elseif($hora >= 13 && $hora <= 18)
-        {
-            $saudacao = 'boa tarde';
-        }
-        else {
-            $saudacao = 'boa noite';
-        }
+
         return $saudacao;
     }
 
     /**
-     * Resume um texto
-     * 
-     * @param string $texto
-     * @param int $limite
-     * @param string $continue
+     * Resume um texto.
      */
-    function resumirTexto(string $texto, int $limite, string $continue = "..."): string
+    function resumirTexto(string $texto, int $limite, string $continue = '...'): string
     {
         $textoLimpo = trim(strip_tags($texto));
-        if(mb_strlen($textoLimpo) <= $limite) {
+        if (mb_strlen($textoLimpo) <= $limite) {
             return $textoLimpo;
         }
 
         $resumirTexto = mb_substr($textoLimpo, 0, mb_strrpos(mb_substr($textoLimpo, 0, $limite), ''));
+
         return $resumirTexto.$continue;
     }

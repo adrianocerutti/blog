@@ -1,9 +1,9 @@
 <?php
-    require_once "sistema/configuracao.php";
-    include_once "Helpers.php";
 
-   //var_dump($_SERVER);
-   echo url('admin');
+require_once 'sistema/configuracao.php';
+include_once 'Helpers.php';
 
-    //Parei na aula 33
-?>
+echo slug("Adão \"Negro\" - '2022' ").'<hr>';
+echo slug('Avatar 2: O Caminho da Água').'<hr>';
+
+// Parei na aula 36
