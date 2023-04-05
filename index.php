@@ -3,7 +3,10 @@
 require_once 'sistema/configuracao.php';
 include_once 'Helpers.php';
 
-echo slug("Adão \"Negro\" - '2022' ").'<hr>';
-echo slug('Avatar 2: O Caminho da Água').'<hr>';
+$cpf = '004.348.491-38';
 
-// Parei na aula 36
+var_dump(validarCpf($cpf));
+
+// echo $limpaNumero = preg_replace('/[^0-9]/', '', $cpf);
+
+// Parei na aula 39
