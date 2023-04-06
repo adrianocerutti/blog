@@ -1,9 +1,16 @@
 <?php
 
+namespace sistema\Nucleo;
+
 class Mensagem
 {
     private $texto;
     private $css;
+
+    public function __toString()
+    {
+        return $this->renderizar();   
+    }
 
     public function sucesso(string $mensagem): Mensagem
     {

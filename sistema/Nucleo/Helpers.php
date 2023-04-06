@@ -1,8 +1,17 @@
 <?php
 
-    function validarCpf(string $cpf): bool
+namespace sistema\Nucleo;
+
+class Helpers {
+
+    /**
+     * Valida um número de CPF
+     * @param string $cpf
+     * @return bool
+     */
+    public static function validarCpf(string $cpf): bool
     {
-        $cpf = limparNumero($cpf);
+        $cpf = self::limparNumero($cpf);
 
         if (mb_strlen($cpf) != 11 or preg_match('/(\d)\1{10}/', $cpf)) {
             return false;
@@ -21,7 +30,12 @@
         return true;
     }
 
-    function limparNumero(string $numero): string
+    /**
+     * Limpa todos os caracteres não numéricos
+     * @param string $numero
+     * @return string
+     */
+    public static function limparNumero(string $numero): string
     {
         return preg_replace('/[^0-9]/', '', $numero);
     }
@@ -29,7 +43,7 @@
     /**
      * Gera uma url amigável.
      */
-    function slug(string $string): string
+    public static function slug(string $string): string
     {
         $mapa['a'] = 'àáâãäåçèéêëìíîïñòóôõöùüúÿÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÑÒÓÔÕÖOÙÜÚ@#$%¨&*()-_=+§ªº<>;:?°"\\\'<>';
         $mapa['b'] = 'aaaaaaceeeeiiiinooooouuuyAAAAAACEEEEIIIINOOOOOOUUU                             ';
@@ -45,7 +59,7 @@
     /**
      * Retorna a data atual formatada.
      */
-    function dataAtual(): string
+    public static function dataAtual(): string
     {
         $diaMes = date('d');
         $diaSemana = date('w');
@@ -63,7 +77,7 @@
         return $dataFormatada;
     }
 
-    function url(string $url): string
+    public static function url(string $url): string
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
         $ambiente = ($servidor == 'localhost') ? URL_DESENVOLVIMENTO : URL_PRODUCAO;
@@ -75,7 +89,7 @@
         return $ambiente.'/'.$url;
     }
 
-    function localhost(): bool
+    public static function localhost(): bool
     {
         $servidor = filter_input(INPUT_SERVER, 'SERVER_NAME');
 
@@ -91,7 +105,7 @@
      *
      * @param string url
      */
-    function validarUrl(string $url): bool
+    public static function validarUrl(string $url): bool
     {
         if (mb_strlen($url) < 10) {
             return false;
@@ -106,12 +120,12 @@
         return false;
     }
 
-    function validarUrlComFiltro(string $url): bool
+    public static function validarUrlComFiltro(string $url): bool
     {
         return filter_var($url, FILTER_VALIDATE_URL);
     }
 
-    function validarEmail(string $email): bool
+    public static function validarEmail(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
@@ -119,7 +133,7 @@
     /**
      * Conta o tempo decorrido de uma data.
      */
-    function contarTempo(string $data): string
+    public static function contarTempo(string $data): string
     {
         $agora = strtotime(date('Y-m-d h:i:s'));
         $tempo = strtotime($data);
@@ -155,7 +169,7 @@
      *
      * @param float $valor
      */
-    function formatarValor(float $valor = null): string
+    public static function formatarValor(float $valor = null): string
     {
         return number_format($valor ? $valor : 0, 2, ',', '.');
     }
@@ -167,7 +181,7 @@
      *
      * @return string
      */
-    function formatarNumero(string $numero = null)
+    public static function formatarNumero(string $numero = null)
     {
         return number_format($numero ? $numero : 0, 0, '.', '.');
     }
@@ -177,7 +191,7 @@
      *
      * @return string saudacao
      */
-    function saudacao(): string
+    public static function saudacao(): string
     {
         $hora = date('H');
 
@@ -197,7 +211,7 @@
     /**
      * Resume um texto.
      */
-    function resumirTexto(string $texto, int $limite, string $continue = '...'): string
+    public static function resumirTexto(string $texto, int $limite, string $continue = '...'): string
     {
         $textoLimpo = trim(strip_tags($texto));
         if (mb_strlen($textoLimpo) <= $limite) {
@@ -208,3 +222,5 @@
 
         return $resumirTexto.$continue;
     }
+
+}
