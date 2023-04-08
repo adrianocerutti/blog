@@ -1,16 +1,8 @@
 <?php
 
 // Arquivo index responsável pela inicialização do sistema
-require_once 'sistema/configuracao.php';
-include_once 'sistema/Nucleo/Helpers.php';
-include './sistema/Nucleo/Mensagem.php';
-include './sistema/Nucleo/Controlador.php';
+require 'vendor/autoload.php';
 
-use sistema\Nucleo\Controlador;
+echo SITE_NOME;
 
-$controlador = new Controlador('admin');
-
-echo '<hr>';
-var_dump($controlador);
-
-// Parei na aula 43
+// Parei na aula 51

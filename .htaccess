@@ -1,0 +1,13 @@
+# oculta os diretórios
+Options -indexes
+
+# Modo de reescrita para usar URL amigáveis
+RewriteEngine On
+
+RewriteBase /blog
+
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-l
+
+RewriteRule ^(.*)$ index.php/$1
