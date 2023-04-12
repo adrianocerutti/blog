@@ -12,3 +12,5 @@ define('URL_PRODUCAO', 'http://unset.com.br');
 define('URL_DESENVOLVIMENTO', 'http://localhost/blog');
 
 // const SITE_NOME = 'UnSet';
+
+define('URL_SITE', 'blog/');

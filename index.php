@@ -3,6 +3,6 @@
 // Arquivo index responsável pela inicialização do sistema
 require 'vendor/autoload.php';
 
-echo SITE_NOME;
+require 'rotas.php';
 
-// Parei na aula 51
+// Parei na aula 54
