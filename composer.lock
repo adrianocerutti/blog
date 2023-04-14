@@ -243,12 +243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "05bb9186ff6221470a65ea9531401f450cd2dff1"
+                "reference": "1812ca1ade2006c9238e7fa0562d438f401246a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/05bb9186ff6221470a65ea9531401f450cd2dff1",
-                "reference": "05bb9186ff6221470a65ea9531401f450cd2dff1",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1812ca1ade2006c9238e7fa0562d438f401246a6",
+                "reference": "1812ca1ade2006c9238e7fa0562d438f401246a6",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +307,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-11T17:38:30+00:00"
+            "time": "2023-04-14T11:18:53+00:00"
         }
     ],
     "packages-dev": [],
