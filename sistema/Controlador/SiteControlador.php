@@ -14,8 +14,8 @@ class SiteControlador extends Controlador
     public function index(): void
     {
         echo $this->template->renderizar('index.html', [
-         'titulo' => 'Página Inicial',
-         'subtitulo' => 'teste de subtítulo',
+            'titulo' => 'Página Inicial',
+            'subtitulo' => 'teste de subtítulo',
         ]);
     }
 
@@ -24,6 +24,13 @@ class SiteControlador extends Controlador
         echo $this->template->renderizar('sobre.html', [
             'titulo' => 'Sobre nós',
             'subtitulo' => 'teste de subtítulo sobre',
-           ]);
+        ]);
+    }
+
+    public function erro404(): void
+    {
+        echo $this->template->renderizar('404.html', [
+            'titulo' => 'Página não encontrada'
+        ]);
     }
 }
