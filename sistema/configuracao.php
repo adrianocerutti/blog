@@ -3,6 +3,11 @@
 // Arquivo de configuração do sistema
 date_default_timezone_set('America/Sao_Paulo');
 
+define('DB_HOST', 'localhost');
+define('DB_NOME', 'blog');
+define('DB_USUARIO', 'root');
+define('DB_SENHA', 'caw123');
+
 // informações do site
 define('SITE_NOME', 'UnSet');
 define('SITE_DESCRICAO', 'UnSet - Tecnologia em Sistemas');

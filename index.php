@@ -5,4 +5,8 @@ require 'vendor/autoload.php';
 
 require 'rotas.php';
 
-// Parei na aula 60
+use sistema\Nucleo\Conexao;
+
+$con = Conexao::getInstancia();
+
+// Parei na aula 70
