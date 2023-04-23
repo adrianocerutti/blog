@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/skipperbent/simple-php-router.git",
-                "reference": "97b61fb8bfeff9afb754c540dc8b065e1a9489c6"
+                "reference": "f565014dff3288d9d3bb3cdc16b90a6a39064b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/97b61fb8bfeff9afb754c540dc8b065e1a9489c6",
-                "reference": "97b61fb8bfeff9afb754c540dc8b065e1a9489c6",
+                "url": "https://api.github.com/repos/skipperbent/simple-php-router/zipball/f565014dff3288d9d3bb3cdc16b90a6a39064b85",
+                "reference": "f565014dff3288d9d3bb3cdc16b90a6a39064b85",
                 "shasum": ""
             },
             "require": {
@@ -68,7 +68,7 @@
                 "issues": "https://github.com/skipperbent/simple-php-router/issues",
                 "source": "https://github.com/skipperbent/simple-php-router/issues"
             },
-            "time": "2023-04-08T18:01:07+00:00"
+            "time": "2023-04-21T09:38:08+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",

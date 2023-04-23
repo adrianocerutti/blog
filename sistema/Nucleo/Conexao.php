@@ -19,8 +19,13 @@ class Conexao
 
             try {
                 self::$instancia = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NOME, DB_USUARIO, DB_SENHA, [
+                    //garante que o charset do PDO seja o mesmo do banco de dados
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                    //todo erro através do PDO será uma exceção
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    //converte qualquer resultado em objeto anônimo
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    //garante que o mesmo nome das colunas do banco seja utilizado
                     PDO::ATTR_CASE => PDO::CASE_NATURAL
                 ]);
             } catch (PDOException $ex) {
