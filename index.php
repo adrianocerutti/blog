@@ -5,4 +5,4 @@ require 'vendor/autoload.php';
 
 require 'rotas.php';
 
-// Parei na aula 70
+// Parei na aula 74
