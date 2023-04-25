@@ -22,7 +22,21 @@
         class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
       >
         <li>
-          <a href="{{ url() }}" class="nav-link px-2 text-secondary">Home</a>
+          <a href="{{ url() }}" class="nav-link px-2 text-white">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Categorias</a
+          >
+          <ul class="dropdown-menu">
+            {% for categoria in categorias %}
+            <li><a class="dropdown-item" href="#">{{categoria.titulo}}</a></li>
+            {% endfor %}
+          </ul>
         </li>
         <li>
           <a href="{{ url('sobre') }}" class="nav-link px-2 text-white"
